@@ -1,24 +1,70 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
+| Column    | Type   | Options     |
+| --------- | ------ | ----------- |
+| nickname  | string | null: false |
+| email     | string | null: false |
+| password  | string | null: false |
+| name      | string | null: false |
+| reading   | string | null: false |
+| birtthday | string | null: false |
 
-Things you may want to cover:
+### Association
+- has_many :items
+- has_many :comments
+- has_many :cards
 
-* Ruby version
+## itemsテーブル
+| Column      | Type       | Options     |
+| ----------- | ---------- | ----------- |
+| item_name   | string     | null: false |
+| description | text       | null: false |
+| category    | string     | null: false |
+| condition   | string     | null: false |
+| shipping    | string     | null: false |
+| area        | string     | null: false |
+| day         | string     | null: false |
+| user        | references |             |
 
-* System dependencies
+### Association
+- belongs_to :user
+- has_many :comments
 
-* Configuration
+## commentsテーブル
+| Column     | Type       | Options     |
+| ---------- | ---------- | ----------- |
+| text       | text       | null: false |
+| user       | references |             |
+| items      | references |             |
 
-* Database creation
+### Association
+- belongs_to :user
+- belongs_to :item
 
-* Database initialization
+## cardsテーブル
+| Column     | Type       | Options     |
+| ---------- | ---------- | ----------- |
+| number     | string     | null: false |
+| expiration | string     | null: false |
+| code       | string     | null: false |
+| user       | references |             |
 
-* How to run the test suite
+### Association
+- belongs_to :user
+- has_ons :addresses
 
-* Services (job queues, cache servers, search engines, etc.)
+## addressesテーブル
 
-* Deployment instructions
+| Column        | Type       | Options     |
+| ------------- | ---------- | ----------- |
+| postal        | string     | null: false |
+| prefectures   | string     | null: false |
+| city          | string     | null: false |
+| address       | string     | null: false |
+| building_name | string     |             |
+| phone         | string     | null: false |
+| user          | references |             |
 
-* ...
+### Association
+- belongs_to :card
