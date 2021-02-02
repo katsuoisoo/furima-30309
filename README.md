@@ -64,7 +64,6 @@
 | address       | string     | null: false |
 | building_name | string     |             |
 | phone         | string     | null: false |
-| user          | references |             |
 
 ### Association
 - belongs_to :card
