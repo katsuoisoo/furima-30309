@@ -11,11 +11,10 @@
 | first_name_reading  | string     | null: false |
 | last_name_reading   | string     | null: false |
 | birthday            | date       | null: false |
-| item                | references |             |
 
 ### Association
-- has_many :user_items
-- has_many :comments
+- has_many :items
+- has_one :user_items
 
 ## itemsテーブル
 | Column       | Type       | Options     |
@@ -32,7 +31,7 @@
 
 ### Association
 - has_many :user_items
-- has_many :comments
+- belongs_to :user
 
 ## user_itemsテーブル
 | Column       | Type       | Options     |
@@ -41,16 +40,15 @@
 | item         | references |             |
 
 ### Association
-- has_many :users
-- has_many :items
+- has_one :users
 
-## commentsテーブル
-| Column     | Type       | Options           |
-| ---------- | ---------- | ----------------- |
-| text       | text       | null: false       |
-| user       | references | foreign_key: true |
-| item       | references | foreign_key: true |
+## addressesテーブル
 
-### Association
-- belongs_to :user
-- belongs_to :item
+| Column        | Type       | Options     |
+| ------------- | ---------- | ----------- |
+| postal        | string     | null: false |
+| prefectures   | string     | null: false |
+| city          | string     | null: false |
+| address       | string     | null: false |
+| building_name | string     |             |
+| phone         | string     | null: false |
