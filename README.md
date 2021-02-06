@@ -14,7 +14,7 @@
 
 ### Association
 - has_many :items
-- has_one :user_items
+- has_one :user_item
 
 ## itemsテーブル
 | Column       | Type       | Options     |
@@ -30,7 +30,7 @@
 | user         | references |             |
 
 ### Association
-- has_many :user_items
+- has_one :user_item
 - belongs_to :user
 
 ## user_itemsテーブル
@@ -40,15 +40,20 @@
 | item         | references |             |
 
 ### Association
-- has_one :users
+- belogns_to :user
+- belogns_to :item
+- has_one :addresse
 
 ## addressesテーブル
 
 | Column        | Type       | Options     |
 | ------------- | ---------- | ----------- |
 | postal        | string     | null: false |
-| prefectures   | string     | null: false |
+| area_id       | string     | null: false |
 | city          | string     | null: false |
 | address       | string     | null: false |
 | building_name | string     |             |
 | phone         | string     | null: false |
+
+### Association
+- belongs_to :user_item
