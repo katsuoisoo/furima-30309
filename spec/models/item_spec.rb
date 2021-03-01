@@ -84,6 +84,13 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include ("Price Half-width characters")
       end
+
+      it 'userが紐付いていないと保存できないこと' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
+      end
+      
     end
   end
 end
