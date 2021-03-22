@@ -40,8 +40,8 @@
 | item         | references | foreign_key: true |
 
 ### Association
-- belogns_to :user
-- belogns_to :item
+- belongs_to :user
+- belongs_to :item
 - has_one :address
 
 ## addressesテーブル

@@ -24,7 +24,6 @@ class ItemsController < ApplicationController
   def show
   end
 
-
   def edit
   end
 
@@ -55,7 +54,7 @@ class ItemsController < ApplicationController
   end
 
   def move_to_index
-    unless current_user.id == @item.user_id
+    unless current_user.id == @item.user_id && @item.user_item == nil
       redirect_to action: :index
     end
   end
