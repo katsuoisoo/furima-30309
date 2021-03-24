@@ -68,6 +68,12 @@ RSpec.describe CardAddress, type: :model do
         expect(@card_address.errors.full_messages).to include ("Phone input only number")
       end
 
+      it 'phoneは英数混合では登録できない' do
+        @card_address.phone = '090abcd1234'
+        @card_address.valid?
+        expect(@card_address.errors.full_messages).to include ("Phone input only number")
+      end
+
       it 'phoneは11桁以内でないと登録できない' do
         @card_address.phone = '090123456789'
         @card_address.valid?
