@@ -7,10 +7,18 @@ RSpec.describe CardAddress, type: :model do
   end
 
   describe '購入者情報の保存' do
+
     context '保存ができるとき' do
-      it 'token,postal,prefecture_id,city,address,phoneが存在すれば登録できる' do
+
+      it 'token,postal,prefecture_id,city,address,phone,user_id,item_idが存在すれば登録できる' do
         expect(@card_address).to be_valid
       end
+
+      it 'building_nameが存在しなくても登録できる' do
+        @card_address.building_name = ''
+        expect(@card_address).to be_valid
+      end
+
     end
 
     context '購入保存ができないとき' do
@@ -61,6 +69,24 @@ RSpec.describe CardAddress, type: :model do
         @card_address.phone = '090123456789'
         @card_address.valid?
         expect(@card_address.errors.full_messages).to include ("Phone is too long (maximum is 11 characters)")
+      end
+
+      it 'phoneは全角数字では登録できない' do
+        @card_address.phone = '０９０１２３４５６７８'
+        @card_address.valid?
+        expect(@card_address.errors.full_messages).to include ("Phone half-width characters")
+      end
+
+      it 'user_idが空では登録できない' do
+        @card_address.user_id = ''
+        @card_address.valid?
+        expect(@card_address.errors.full_messages).to include ("User can't be blank")
+      end
+
+      it 'item_idが空では登録できない' do
+        @card_address.item_id = ''
+        @card_address.valid?
+        expect(@card_address.errors.full_messages).to include ("Item can't be blank")
       end
 
     end
